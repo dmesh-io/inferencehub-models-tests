@@ -7,7 +7,7 @@ from skimage.io import imread
 from config.config import ApiConfig
 
 
-def image_request(model_name: str, img_path: Union[str, Path]):
+def image_request(model_name: str, img_path: Union[str, Path], verbose=True):
     config = ApiConfig()
     print("Reading input sample to memory...")
     image = imread(img_path)
@@ -20,6 +20,6 @@ def image_request(model_name: str, img_path: Union[str, Path]):
         json=json_data,
         headers=config.headers
     )
-    print(f"Response received: {response.json()}")
+    if verbose: print(f"Response received: {response.json()}")
     response.raise_for_status()
-    return response.json()
+    return response.content
