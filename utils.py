@@ -36,7 +36,7 @@ def show_image_from_response(bt_resp: bytes):
 def resize_image(path: Union[str, Path], size=(512, 512)):
     img = pltimg.imread(path)
     img = resize(img, output_shape=size, order=0, anti_aliasing=False, preserve_range=True)
-    imsave("input_samples/image-yolo5.png", img)
+    imsave(path, img)
 
 
 def play_music_from_response(bt_resp: bytes):
