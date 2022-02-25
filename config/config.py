@@ -21,6 +21,5 @@ class ApiConfig():
         self.settings = Access()
         self.access_token = self.settings.get_access_token()
         self.headers = {
-            "Content-Type": "application/json",
             "Authorization": f"{self.access_token}",
         }
