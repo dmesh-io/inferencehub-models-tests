@@ -14,7 +14,7 @@ NOTE_LENGTH_16TH_120BPM = 0.25 * 60 / 120
 BAR_LENGTH_120BPM = 4.0 * 60 / 120
 
 
-def show_image_from_path(path: Union[str, Path], size=(4, 4)):
+def show_image_from_path(path: Union[str, Path], size=(10, 10)):
     img = pltimg.imread(path)
     plt.figure(figsize=size)
     plt.imshow(img)
@@ -22,15 +22,16 @@ def show_image_from_path(path: Union[str, Path], size=(4, 4)):
     plt.show()
 
 
-def show_image_from_numpy(array: np.array):
+def show_image_from_numpy(array: np.array, size=(10, 10)):
+    plt.figure(figsize=size)
     plt.imshow(array)
     plt.axis('off')
     plt.show()
 
 
-def show_image_from_response(bt_resp: bytes):
+def show_image_from_response(bt_resp: bytes, size=(10, 10)):
     result = np.array(json.loads(bt_resp))
-    show_image_from_numpy(result)
+    show_image_from_numpy(result, size)
 
 
 def resize_image(path: Union[str, Path], size=(512, 512)):
@@ -45,6 +46,7 @@ def play_music_from_response(bt_resp: bytes):
     note_seq.plot_sequence(note_sequence)
     note_seq.play_sequence(note_sequence, synth)
 
+# The code below is from https://huggingface.co/TristanBehrens/js-fakes-4bars/blob/main/colab_jsfakes_generation.ipynb
 
 def empty_note_sequence(qpm=120.0, total_time=0.0):
     note_sequence = note_seq.protobuf.music_pb2.NoteSequence()
@@ -146,7 +148,3 @@ def token_sequence_to_note_sequence(token_sequence, use_program=True, use_drums=
                 note.program = 0
 
     return note_sequence
-
-
-if __name__=="__main__":
-    resize_image("input_samples/image-yolo5.jpg", (512, 512))

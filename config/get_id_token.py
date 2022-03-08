@@ -3,8 +3,8 @@ from pydantic import BaseSettings
 
 
 class Access(BaseSettings):
-    USER_POOL_ID: str
-    APP_CLIENT_ID: str
+    USER_POOL_ID: str = "eu-central-1_KrRANFice"
+    APP_CLIENT_ID: str = "2grpmgh0bsn8k1sl867sq6ht7e"
     CICD_USER_NAME: str
     CICD_PASSWORD: str
 

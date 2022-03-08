@@ -5,4 +5,5 @@ scikit-image==0.19.1
 requests==2.25.1
 jupyter==1.0.0
 matplotlib==3.5.0
+rich==11.2.0
 note_seq==0.0.3
